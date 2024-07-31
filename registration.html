@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Registration Form</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: rgb(241, 230, 217);;
+        }
+        .container {
+            width: 400px;
+            margin: auto;
+            padding: 30px;
+            background-color: #e0d9d9;
+             margin-top: 50px;
+             border: 2px solid black;
+        }
+        h2 {
+            text-align: center;
+        }
+        input[type="text"],  input[type="tel"], input[type="date"], textarea {
+            width: 100%;
+            padding: 10px;
+            margin: 10px 0;
+            box-sizing: border-box;
+        }
+        button {
+            width: 100%;
+            padding: 10px;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #45a049;
+        }
+       
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h2>Register</h2>
+        <form name="registrationForm" action="/register" method="POST" onsubmit="return validateForm()">
+            <label for="firstName">First Name</label>
+            <input type="text" id="firstName" name="firstName" required>
+
+            <label for="lastName">Last Name</label>
+            <input type="text" id="lastName" name="lastName" required>
+
+            <label for="mobileNumber">Mobile Number</label>
+            <input type="tel" id="mobileNumber" name="mobileNumber" required>
+
+            <label for="dob">Date of Birth</label>
+            <input type="date" id="dob" name="dob" required>
+
+            <label for="address">Address</label>
+            <textarea id="address" name="address" rows="4" required></textarea>
+
+            <button type="submit">Register</button>
+           
+        </form>
+    </div>
+
+    <script>
+        function validateForm() {
+            var firstName = document.forms["registrationForm"]["firstName"].value;
+            var lastName = document.forms["registrationForm"]["lastName"].value;
+            var mobileNumber = document.forms["registrationForm"]["mobileNumber"].value;
+            var dob = document.forms["registrationForm"]["dob"].value;
+            var address = document.forms["registrationForm"]["address"].value;
+            var errorMessage = "";
+
+            // First Name validation
+            if (firstName.trim() === "") {
+               alert( "First Name is required\n");
+               return false;
+            }
+
+            // Last Name validation
+            if (lastName.trim() === "") {
+                alert("Last Name is required\n");
+                return false;
+            }
+
+            // Mobile Number validation
+            var mobileNumberPattern = /^[0-9]{10}$/;
+            if (!mobileNumberPattern.test(mobileNumber)) {
+                alert("Mobile Number should be a 10-digit number\n");
+                return false;
+            }
+
+            // Date of Birth validation
+            if (dob === "") {
+                alert("Date of Birth is required\n");
+                return false;
+            }
+
+            // Address validation
+            if (address.trim() === "") {
+                alert(errorMessage += "Address is required\n");
+                return false;
+            }
+
+            
+                return true; // Allow form submission
+            
+        }
+    </script>
+</body>
+</html>
